@@ -56,10 +56,17 @@ class HomeActivity : AppCompatActivity() {
         germanCheckBox = findViewById(R.id.language_three)
         otherCheckBox = findViewById(R.id.language_other)
         otherTextInput = findViewById(R.id.other_language_input)
+        otherTextInput.isEnabled = false //Para impedir que se pueda ingresdar texto
         nickNameInput = findViewById(R.id.nickname_input)
         ageInput = findViewById(R.id.age_input)
         save = findViewById(R.id.save_button)
         container = findViewById(R.id.container)
+
+        //Habilitar el ingresar texto solo cuando el checkbox este activo para controlar el flujo
+        otherCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            otherTextInput.isEnabled = isChecked
+        }
+
     }
     private fun loadData() {
         userName = sharedPreferences.getString("CURRENT_USER","")?:""
